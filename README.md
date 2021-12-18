@@ -1,2 +1,2 @@
 # WildRidePlatformer
-my first unity game
+simple unity platformer
