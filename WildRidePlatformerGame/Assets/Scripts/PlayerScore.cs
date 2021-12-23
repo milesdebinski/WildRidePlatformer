@@ -24,7 +24,7 @@ public class PlayerScore : MonoBehaviour
 
   void addScore()
   {
-    Debug.Log(transform.rotation.z);
+
     if (Mathf.Abs(transform.rotation.z) > 0.8f && !flipDone)
     {
       gameSession.AddToScore();

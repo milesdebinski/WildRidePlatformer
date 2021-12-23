@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-  [SerializeField] float torqueAmount = 3f;
+  [SerializeField] float torqueAmount = 2500f;
   [SerializeField] float boostSpeed = 21f;
   [SerializeField] float baseSpeed = 14f;
   Rigidbody2D rb2d;
@@ -31,9 +31,9 @@ public class PlayerController : MonoBehaviour
     }
   }
 
-  public void DisableControls()
+  public void DisableControls(bool isEnabled)
   {
-    canMove = false;
+    canMove = isEnabled;
   }
 
   void RespondToBoost()
@@ -55,11 +55,13 @@ public class PlayerController : MonoBehaviour
   {
     if (Input.GetKey(KeyCode.LeftArrow))
     {
-      rb2d.AddTorque(torqueAmount);
+      rb2d.AddTorque(torqueAmount * Time.deltaTime);
+      Debug.Log("xxTORQUE" + torqueAmount);
+      Debug.Log("TORQUE + DELTA" + torqueAmount * Time.deltaTime);
     }
     else if (Input.GetKey(KeyCode.RightArrow))
     {
-      rb2d.AddTorque(-torqueAmount);
+      rb2d.AddTorque(-torqueAmount * Time.deltaTime);
     }
   }
 

@@ -9680,7 +9680,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1.5
   m_LinearDrag: 0
-  m_AngularDrag: 5
+  m_AngularDrag: 10
   m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_Interpolate: 1
@@ -9747,7 +9747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189360dfdc4c2c244ad090ceab0e48f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torqueAmount: 5
+  torqueAmount: 2500
   boostSpeed: 21
   baseSpeed: 14
 --- !u!114 &8908644446978469747
@@ -9762,7 +9762,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1ac15622317a94da3fd6aef4e73423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadDelay: 0.5
   crashEffect: {fileID: 8908644446933095686}
   crashSFX: {fileID: 0}
 --- !u!114 &8908644446978469749
@@ -9790,6 +9789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a5d1d8e90284b46818a458c1b3f555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfFlips: 0
 --- !u!1 &8908644447814428916
 GameObject:
   m_ObjectHideFlags: 0
@@ -9802,7 +9802,7 @@ GameObject:
   - component: {fileID: 8908644447814428918}
   m_Layer: 0
   m_Name: Boarder_Top
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

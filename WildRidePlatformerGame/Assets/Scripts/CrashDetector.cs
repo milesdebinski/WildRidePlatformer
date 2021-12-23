@@ -5,28 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class CrashDetector : MonoBehaviour
 {
-  [SerializeField] float loadDelay = 1f;
   [SerializeField] ParticleSystem crashEffect;
   [SerializeField] AudioClip crashSFX;
   bool hasCrashed = false;
+
 
 
   void OnTriggerEnter2D(Collider2D other)
   {
     if (other.tag == "Ground" && !hasCrashed)
     {
+      // StartCoroutine(ReloadScene());
+      FindObjectOfType<GameSession>().ProcessPlayerDeath();
       hasCrashed = true;
       Debug.Log("Ouch!! it hurts!");
       crashEffect.Play();
-      FindObjectOfType<PlayerController>().DisableControls();
+      FindObjectOfType<PlayerController>().DisableControls(false);
       GetComponent<AudioSource>().PlayOneShot(crashSFX);
-      Invoke("ReloadScene", loadDelay);
-      FindObjectOfType<GameSession>().ProcessPlayerDeath();
     }
   }
 
-  void ReloadScene()
+  IEnumerator ReloadScene()
   {
+    yield return new WaitForSecondsRealtime(3);
     SceneManager.LoadScene(0);
   }
 }

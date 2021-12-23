@@ -9,7 +9,7 @@ public class GameSession : MonoBehaviour
 {
   [SerializeField] int playerLives = 5;
   [SerializeField] int score = 0;
-  [SerializeField] int deathDelay = 3;
+
 
   [SerializeField] TextMeshProUGUI livesText;
   [SerializeField] TextMeshProUGUI scoreText;
@@ -45,24 +45,28 @@ public class GameSession : MonoBehaviour
   {
     if (playerLives > 1)
     {
-      TakeLive();
+      StartCoroutine(TakeLive());
     }
     else
     {
-      ResetGameSession();
+      StartCoroutine(ResetGameSession());
     }
   }
 
-  void TakeLive()
+  IEnumerator TakeLive()
   {
     playerLives--;
     livesText.text = playerLives.ToString();
+    yield return new WaitForSecondsRealtime(1);
+    FindObjectOfType<PlayerController>().DisableControls(true);
     int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
     SceneManager.LoadScene(currentSceneIndex);
   }
 
-  void ResetGameSession()
+  IEnumerator ResetGameSession()
   {
+    yield return new WaitForSecondsRealtime(3);
+    FindObjectOfType<PlayerController>().DisableControls(true);
     SceneManager.LoadScene(0);
     Destroy(gameObject);
   }
