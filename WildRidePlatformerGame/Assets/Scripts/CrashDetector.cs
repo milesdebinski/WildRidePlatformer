@@ -21,6 +21,7 @@ public class CrashDetector : MonoBehaviour
       FindObjectOfType<PlayerController>().DisableControls();
       GetComponent<AudioSource>().PlayOneShot(crashSFX);
       Invoke("ReloadScene", loadDelay);
+      FindObjectOfType<GameSession>().ProcessPlayerDeath();
     }
   }
 

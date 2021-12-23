@@ -12,14 +12,24 @@ public class FinishLine : MonoBehaviour
   {
     if (other.tag == "Player")
     {
-      Debug.Log("You Finished!");
-      finishEffect.Play();
+      StartCoroutine(LoadNextLevel());
       GetComponent<AudioSource>().Play();
-      Invoke("ReloadScene", loadDelay);
+      finishEffect.Play();
     }
   }
-  void ReloadScene()
+
+  IEnumerator LoadNextLevel()
   {
-    SceneManager.LoadScene(0);
+    yield return new WaitForSecondsRealtime(loadDelay);
+
+    int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+    int nextSceneIndex = currentSceneIndex + 1;
+    // Set to the first level if there is no more levels
+    if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+    {
+      nextSceneIndex = 0;
+    }
+
+    SceneManager.LoadSceneAsync(nextSceneIndex);
   }
 }
