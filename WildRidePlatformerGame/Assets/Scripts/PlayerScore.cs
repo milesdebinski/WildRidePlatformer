@@ -6,12 +6,13 @@ public class PlayerScore : MonoBehaviour
 {
   [SerializeField] int numberOfFlips = 0;
   bool flipDone = false;
+  GameSession gameSession;
 
 
   void Start()
   {
 
-
+    gameSession = FindObjectOfType<GameSession>();
   }
 
   void Update()
@@ -26,6 +27,7 @@ public class PlayerScore : MonoBehaviour
     Debug.Log(transform.rotation.z);
     if (Mathf.Abs(transform.rotation.z) > 0.8f && !flipDone)
     {
+      gameSession.AddToScore();
       numberOfFlips++;
       flipDone = true;
 
